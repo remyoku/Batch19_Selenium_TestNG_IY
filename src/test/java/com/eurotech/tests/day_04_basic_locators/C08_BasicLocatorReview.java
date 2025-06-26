@@ -32,13 +32,14 @@ public class C08_BasicLocatorReview {
 
         //locate BOTH OF previous and next link at the bottom of the page by using name and get text of web element then print the text
 
-       // driver.findElement(By.name("")) name yok
+        WebElement previousAndNext = driver.findElement(By.name("frm"));
+        System.out.println("previousAndNext.getText() = " + previousAndNext.getText());
+
 
         // * locate Samsung Galaxy S6 by using tagname and get text of web element then print the text
 
-        WebElement galaxyS6 = driver.findElement(By.tagName("a"));
-        String galaxyS6Text = galaxyS6.getText();
-        System.out.println("galaxyS6Text = " + galaxyS6Text);
+        WebElement galaxyS6 = driver.findElement(By.tagName("h4"));
+        System.out.println("galaxyS6.getText() = " + galaxyS6.getText());
 
 
         // locate Product Store at the left top of the page by using class name and get text of web element then print the text

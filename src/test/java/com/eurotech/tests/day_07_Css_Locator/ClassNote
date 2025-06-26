@@ -1,0 +1,64 @@
+Basic Locator
+-id
+-classname
+-name
+-LinkText
+-Partial LinkText
+-tagName
+
+Advanced Locators
+-Xpath
+-Css Selector
+
+HTML element
+
+<tagName attribute=value, attribute=value>"text"/>endTag
+          id='login'    ,  class=form v2 d3
+
+
+Css Selector
+
+id --> #
+class --> .
+--->eğer class attribute içinde boşluk varsa yerine . konularak kapatılır,sonra aratılır.--->.btn.btn-primary
+tagName.classValue
+tagName#idValue
+
+-------------------------------------------------------------------------
+
+attribute = 'value'  --> []
+tagName[attribute= 'value']
+
+birden çok attribute ile css locate etme
+
+[attribute1 = 'value1'][attribute2= 'value2']  ---> And
+[attribute1 = 'value1'],[attribute2= 'value2']  ---> Or
+
+
+-------------------------------------------------------------------------
+
+
+[attribute*='Val'] ---->* --> means Contains  --> attributeValue bir kısmını vermeniz yeterli
+TagName[attribute*='Val'] ---->* --> means Contains
+
+
+[attribute^='firstPartOfValue'] ----> ^ ---> means start-with  ---> attributeValue nın başından bir kısmını koymanız yeterli
+TagName[attribute^='firstPartOfValue'] ----> ^ ---> means start-with
+
+[attribute$='firstPartOfValue'] ----> $ ---> means end-with ---> ---> attributeValue nın sonundan bir kısmını koymanız yeterli
+[attribute$='firstPartOfValue'] ----> $ ---> means end-with
+
+parent to child --->  ">"
+parent to grandChild  --->  " "(space boşluk)
+
+-------------------------------------------------------------------------
+
+İndex yoluyla:
+
+  cssSyntax    --->  :nth-of-type(indexNumber)
+  cssSyntax    --->  :nth-of-child(indexNumber)
+
+  note:Bu sadece aynı parent element altındaki webElementler için kullanılır.
+
+  css following sibling  ---> (~) tilde işareti (alt+0126)
+  tagName[]~tagName[]
