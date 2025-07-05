@@ -1,0 +1,27 @@
+Test Levels
+
+--TestNG bir framework tür.
+
+
+  -Componenet Testing(Unit)    - developer
+  -Integration Testing         - developer
+  -System Testing              - tester
+  -UAT Testing                 - tester, client, PO, BA
+
+TestNG  - (Next Generation Testing) - Unit Testing Tool
+        -Testleri düzenlemek, seçmek ve koşturmak (çalıştırmak)            ---> ("@" -Annotations )
+        -Verification -doğrulama-actual ve excepted karşılaştırması yapar  ---> (Assert Class )
+        -Rapor oluşturma işlemleri düzenler                                ---> (ExtentReport )
+
+
+Java -TestNG - Junit
+Python - Pytest
+C# - Nunit
+JS - Cypress
+
+
+     Assert Class Methods
+       AssertEquals   ---> actual ve excepted ister - data tiplerini karşılaştırırırz.
+       AssertNotEquals
+       AssertTrue     --->boolean condition üzerinden değerlendiriliyor.
+       AssertFalse    --->boolean condition üzerinden değerlendiriliyor.

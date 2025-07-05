@@ -1,0 +1,21 @@
+
+Wait
+
+*Thread.sleep seleniumda kullanılabilir ama kullanılmaması lazım
+*Onun yerine daha akıllı waitler kullanıcaz.
+Static Wait
+
+-mesela max 15 sn bekle dedim işlem 2.saniyede işlemi bitirdi devam edebiliyor waitte. Ama tread.sleepte bu böyle değil.
+
+Implicit Wait
+-internetin yüklenmesi ile olan durumlarda kullanılır.Neden çünkü bütün find
+elementlerle birlikte çalıştığı için her bir aranan web elementle birlikte çalışır.
+-Bütün kodu kapsayan bir yapısı var.
+-Hangi test methoduna konulursa o test methodu için geçerli
+
+
+Explicit Wait
+-Bu direkt açık wait ve web elementi ilgilendirir.
+-Formun altında kaydet bu tonu vardır form dolmadan kaydet butonu aktif hale gelmez.
+-İşte bu waiti kaydet butonu aktif olana kadar bekle kodu yazabiliriz.
+-Şu olana kadar bekle , bunu yapana kadar bekle gibi.
