@@ -1,0 +1,104 @@
+
+
+PopUp-Alert-Iframe
+
+*Alert ve popUp arasında ki fark popUpta inspect yapabilirken alertlerde bunu yapamıyor olmamız.
+*HTML popUp inspect te açılabilen bir diğer adıyla Fake Alertlerde herhangi bir switchTo yada benzeri durumlara
+ihtiyaç duymadan alabilir.
+
+-Alert
+*Tek satırla da işlemeleri halledebiliyoruz.
+*Alertlerde inspect yapamıyor ve açılan pencerenin üstünde herhangi bir işlem yapamıyoruz.
+*Alertlerde
+-Ya açılan baxı kabul edicem
+-Ya reddedicez
+-Yada yazı göndercez
+-üzerinde ki yazıları alabileceğiz.
+-Bunlar için yapılar var.
+
+**Yapısı şöyle başlıyor;
+-Önce bir alert objesi oluşturuyoruz.
+-Alert alert = driver.switchTo().alert();  --> burada bulunan switchTo = geçir demek yani beni alerte geçir.
+-Ardından 1.si olan kabul etme var ise --> alert.accept();
+-2.si olan cancel yani kabul etmeme durumu -->   alert.dismiss();
+-3.sü olan açılan box a yazı yazma durumu da -->  alert.sendKeys("Ahmet Ay");
+-4.sü de olan mesajı alma durumu o da --> alert.getText(); ile alınır.
+
+
+MultiPle Windows
+-Herhangi gittiğimiz bir sayfada tıkladığımız bir diğer link ile başka bir tab açılması yeni bir pencere açımasıdır.
+-Bi yere bas ondan sonra açılan yeni pencereye geç
+-selenium driver.get() dediğimiz sayfada kalır yeni açılan sayfaya geçmez.
+-getWindowHandle(); -->Şu an açık olan aktif pencerenin (veya sekmenin) benzersiz kimliğini (ID'sini) verir. --String döner
+-getWindowHandles(); -->Açık olan TÜM pencerelerin/sekmelerin kimliklerini verir. --Set<String> döner.
+for ( String windowHandle :allWindows ) {
+        		    if (!windowHandle.equals(currentWindow)){
+                        driver.switchTo().window(windowHandle);
+                        break;
+                    }
+        		}
+
+ -bu döngüyü açıklayacağım;
+ bir pencere açtım sonra linke clikledim ve yeni bir pencere açıldı, selenium ilk sayfa
+ ilk pencere numarası 15 olsun ikinci pencere 25 ben 25 e geçmek istiyorum.
+ elimde iki tane sayfa ve numara var birinci sayfa 115 ikinci sayfa 15 ve 25 ama ben sadece 25 e geçsin istiyorun
+ işte bu yüzden bütün numaraları aldım (allWindows) sırayla windowHandle a verdim 15 i aldı 15 15 e eşit mi dedi
+ evet True ama başında değildir(!) işartei var ne oldu false oldu çalışmadı sonra 25 i aldı 25 15 e eşitmi hayır
+ değildir vardı noldu True oldu ve dögü çalıştı ve 25in olduğu yere bizi geçirdi.
+ Bu sayılar idler.yani sayfa idsi
+
+
+ **IFRAME
+ -HTML içinde HTML demek
+ -Daha kolay dizayn etmelerini sağlıyor developerlar için
+ -Google reklamları iframe içinde olur.
+ -Html içinde bir html daha varsa orda bir iframe açmanız lazım
+ -selenium sadece bir html ile çalışıyor dolayısıyla iç içe html olduğu zaman diğerini görmüyor.
+ Diğerleri ile alaklı işlem yapmıyor ve hata atıyor.
+ -iframe de no such element hatası aldığımız için switchTo() ile geçirmem lazım. Yoksa işlem yapmıyor.
+ -driver.switchTo().frame
+ -içeriye geçtiği zaman dışarıyı görmez yani neredeyse sadece orayı görür.
+ -Iframe (Frame) 3 yolla geçebiliriz.
+ -1.iframe in idsi veya name i varsa onları kullanıp geçebiliyoruz.
+ -2.index ile geçebiliyoruz
+ -3.webelementler ile de geçebiliyoruz.
+
+-Ben id veya name i kullanırken herhangi bir locate yapmıyorum direkt kullanıyorum, ama diyelim id veya name yok
+for var o zaman cssle locate edip yada başka bir locaterla kullana biliyorum.
+
+-indexleme---> 3 iframe var birincisi 0 ikincisi 1 ve üçüncüsü de 2 ve bunların içinde de var , onlarda aynı
+şekilde 0 1 2 3 ... gibi gider her birinin içinde ki kendine özgü 0 ile başlar. Ve önce ana gövdeye gidilir
+ardından içindekine gidilir.
+
+-geçiş--> geçişler teker teker olur step by step
+-Ana HTML var elimde onun altında 2 tane onların altında da 3 er tane gibi işte bir ana HTML den en alttakine hemen
+geçemiyoruz sırayla geçmemiz lazım.
+-Peki geri dönerken nasıl herhangi bir tarife gerek olmadan yukarı ya geç diyorsunuz yani parentFrame e geç diyebiliyorum
+adım adıma gerek yok ya ister adım adım çıkarsınız yada en üste direkt çıkabilirsiniz.Ama iki üste çıkmak yok,
+ya en üste yada bir üste
+-ve kardeşler arasında geçiş yok önce babaya sonra geçmek istediğiniz çocuğa
+
+/**
+ * No Such Element Exception aldığımızda
+ * 1- Locator might be wrong or dynamic or not correct-Locator/konumlandırıcı
+ yanlış veya dinamik olabilir veya doğru olmayabilir.
+ * 2- Not enough wait time - Yeterli bekleme süresi yok
+ * 3- There is a frame or iframe -Bir frame veya iframe var !
+ - Html'de bir HTML sayfasının içinde bir diğer HTML yapısı olabilir.
+ - Bu, <iframe> veya <frame> etiketi ile sağlanır.
+ - Frame varsa, selenyum frame içinde ne olduğunu kontrol edemez.
+ - Önce iframe'i değiştirmeliyiz. (switchTo() metodu ile)
+ - iframe'e geçtiğimizde, selenium biz geri değiştirene kadar ana HTML sayfasını ve diğer frame yapılarını göremez,
+ - Bir seferde sadece bir frame değiştirebiliriz ve torunlara doğrudan geçilmez.
+ - kardeş/sibling arası geçiş/switch olmaz sadece ebeveynden çocuğa/parentchild.
+ - child frameden bir üste yani parenta switchTo().parentFrame(); ile geçeriz.
+ - en üstteki ana HTML (default) yapısına ise switchTo().defaultContent(); ile geçebiliriz.
+ - bulunduğumuz frame'den bir üste ya da en üste (ana HTML) geçiş vardır. iki, üç vb. üstlere geçiş yoktur.
+ - switchTo().frame()----> üç farklı parametre ile çalışır...
+ 1. id ya da name attribute değeri ile  ex: driver.switchTo().frame("frame1");
+ 2. index numarası ile ex:  driver.switchTo().frame(0);
+ 3. Web Element ile  ex: WebElement frame2 = driver.findElement(By.cssSelector("[src='frames/frames-header.html']"));
+ driver.switchTo().frame(frame2);
+ */
+
+

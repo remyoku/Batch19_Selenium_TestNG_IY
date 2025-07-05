@@ -9,14 +9,17 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.swing.plaf.TableHeaderUI;
+
 public class C01_HTML_PopUps {
 
     WebDriver driver;
 
     @BeforeMethod
-    public void setUp(){
-        driver= WebDriverFactory.getDriver("chrome");
+    public void setUp() {
+        driver = WebDriverFactory.getDriver("chrome");
     }
+
     @AfterMethod
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
@@ -47,7 +50,7 @@ public class C01_HTML_PopUps {
         String actualText = fakeText.getText();
         String expectedText = "I am a fake alert box!";
 
-        Assert.assertEquals(actualText,expectedText,"Fake alert box texts should be same");
+        Assert.assertEquals(actualText, expectedText, "Fake alert box texts should be same");
 
         okBtn.click();
 
@@ -57,19 +60,36 @@ public class C01_HTML_PopUps {
         //sarı çıkıyorsa kod doğru ama istenilende bir hata var.
 
 
-
-
     }
+
     @Test
-    public void html_Popups_Task(){
-        /**
-         * go to http://primefaces.org/showcase/ui/overlay/confirmDialog.xhtml?jfwid=73437
-         * click on confirm button
-         * click on yes at the popup window
-         * make verification with confirmed popup
-         */
-    }
+    public void html_Popups_Task() throws InterruptedException {
+/**
+ * go to http://primefaces.org/showcase/ui/overlay/confirmDialog.xhtml?jfwid=73437
+ * click on confirm button
+ * click on yes at the popup window
+ * make verification with confirmed popup
+ */
 
+        driver.get("http://primefaces.org/showcase/ui/overlay/confirmDialog.xhtml?jfwid=73437");
+        WebElement confirmBtn = driver.findElement(By.xpath("//span[text()='Confirm']"));
+        confirmBtn.click();
+        Thread.sleep(2000);
+
+        WebElement yesBtn = driver.findElement(By.className("ui-confirmdialog-yes"));
+        yesBtn.click();
+        Thread.sleep(2000);
+
+        WebElement message = driver.findElement(By.xpath("//p[text()='You have accepted']"));
+        String actualMessage= message.getText();
+
+        if (actualMessage.equals("You have accepted")){
+            System.out.println("You are passed");
+        }else {
+            System.out.println("Failled...");
+        }
+
+    }
 
 
 }

@@ -91,6 +91,8 @@ public class C03_MultipleWindows {
             if (driver.getTitle().equals(targetTitle)){
                 break;
             }
+            //sayfanın başlığını kontrol et benim geçmek istediğim sayfanın başlığı değil ise geç yoksa kal
+           // ve döngüyü sonlandır.
         }
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle,targetTitle);
