@@ -74,5 +74,23 @@ public class C03_DisableElement {
          * verify that the element is NOT selected
          * verify that the element is displayed
          */
+
+        driver.get("http://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
+
+        WebElement pumpkinBox = driver.findElement(By.cssSelector("[value='pumpkin']"));
+        Thread.sleep(2000);
+        Assert.assertTrue(pumpkinBox.isEnabled());
+        Thread.sleep(1000);
+        Assert.assertTrue(pumpkinBox.isSelected());
+        Thread.sleep(1000);
+        Assert.assertTrue(pumpkinBox.isDisplayed());
+
+        WebElement cabbage = driver.findElement(By.cssSelector("[value='cabbage']"));
+        Thread.sleep(2000);
+        Assert.assertFalse(cabbage.isEnabled());
+        Thread.sleep(1000);
+        Assert.assertFalse(cabbage.isSelected());
+        Thread.sleep(1000);
+        Assert.assertTrue(cabbage.isDisplayed());
     }
 }

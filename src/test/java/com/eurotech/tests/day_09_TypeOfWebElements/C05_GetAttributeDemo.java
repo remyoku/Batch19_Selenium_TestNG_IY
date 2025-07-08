@@ -59,7 +59,7 @@ public class C05_GetAttributeDemo {
 
     }
     @Test
-    public void getAttribute_Task(){
+    public void getAttribute_Task() throws InterruptedException {
 
         /**
          * navigate to https://demoqa.com/text-box
@@ -74,5 +74,22 @@ public class C05_GetAttributeDemo {
          * getAttribute("value") metodu ile alabiliriz..)
          * NOT: getAttribute metodu ile bir web elementin texti alınamaz.. onun için getText() metodu kullanılır..
          */
+
+        driver.get("https://demoqa.com/text-box");
+
+        WebElement fullNameInputBox = driver.findElement(By.cssSelector("[id='userName']"));
+        System.out.println("fullNameInputBox.getAttribute(\"type\") = " + fullNameInputBox.getAttribute("type"));
+        System.out.println("fullNameInputBox.getAttribute(\"autocomplete\") = " + fullNameInputBox.getAttribute("autocomplete"));
+        System.out.println("fullNameInputBox.getAttribute(\"name\") = " + fullNameInputBox.getAttribute("name"));
+
+        System.out.println("--------------------------");
+
+        System.out.println("fullNameInputBox.getAttribute(\"innerHTML\") = " + fullNameInputBox.getAttribute("innerHTML"));
+        System.out.println("fullNameInputBox.getAttribute(\"outerHTML\") = " + fullNameInputBox.getAttribute("outerHTML"));
+        Thread.sleep(1000);
+
+        fullNameInputBox.sendKeys("Ahmet");
+        Thread.sleep(2000);
+        System.out.println("fullNameInputBox.getAttribute(\"value\") = " + fullNameInputBox.getAttribute("value"));
     }
 }

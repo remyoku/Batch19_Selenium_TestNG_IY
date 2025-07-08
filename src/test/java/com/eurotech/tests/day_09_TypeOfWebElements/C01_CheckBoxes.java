@@ -29,7 +29,7 @@ public class C01_CheckBoxes {
     @AfterMethod
     public void tearDown(){
         driver.close();
-        driver.get(" http://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
+     //   driver.get(" http://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
     }
 
     @Test
@@ -92,7 +92,7 @@ public class C01_CheckBoxes {
 
     }
     @Test
-    public void checkboxTest_Task(){
+    public void checkboxTest_Task() throws InterruptedException {
         /**
          * go to https://the-internet.herokuapp.com/checkboxes
          * locate both checkBoxes web elements
@@ -102,5 +102,24 @@ public class C01_CheckBoxes {
          * verify that checkbox 1 is selected
          * verify that checkbox 2 is NOT selected
          */
+
+        driver.get("https://the-internet.herokuapp.com/checkboxes");
+
+        Thread.sleep(2000);
+        WebElement checkBox1 = driver.findElement(By.cssSelector("#checkboxes>input:nth-child(1)"));
+        WebElement checkBox2 = driver.findElement(By.cssSelector("#checkboxes>input:nth-of-type(2)"));
+
+        Assert.assertFalse(checkBox1.isSelected());
+        Assert.assertTrue(checkBox2.isSelected());
+
+        checkBox1.click();
+        Thread.sleep(2000);
+        checkBox2.click();
+        Thread.sleep(2000);
+
+        Assert.assertTrue(checkBox1.isSelected());
+        Assert.assertFalse(checkBox2.isSelected());
+
+
     }
 }

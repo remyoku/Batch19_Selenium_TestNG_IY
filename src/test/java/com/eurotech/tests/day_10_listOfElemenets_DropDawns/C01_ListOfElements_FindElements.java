@@ -105,7 +105,7 @@ public class C01_ListOfElements_FindElements {
     }
 
     @Test
-    public void findElements_Task() {
+    public void findElements_Task() throws InterruptedException {
         /**
 
          navigate to http://www.eurotech.study/
@@ -119,6 +119,46 @@ public class C01_ListOfElements_FindElements {
          locate Experience Credentials and Education Credentials with findElements()
          then get both element texts and print them
          **/
+
+        driver.get("http://www.eurotech.study/");
+        Thread.sleep(1000);
+
+        WebElement cookies = driver.findElement(By.xpath("//button[@id = 'rcc-confirm-button']"));
+        cookies.click();
+        Thread.sleep(1000);
+
+        WebElement loginBtn = driver.findElement(By.xpath("//a[text()='Login']"));
+        loginBtn.click();
+        Thread.sleep(1000);
+
+       List<WebElement> inputs = driver.findElements(By.cssSelector("input"));
+
+        System.out.println("inputs.size() = " + inputs.size());
+        Assert.assertTrue(inputs.size()==3);
+
+        String thirdElement = inputs.get(2).getAttribute("value");
+        Assert.assertEquals(thirdElement,"Login");
+
+        inputs.get(0).sendKeys("iremyokus2113@gmail.com");
+        inputs.get(1).sendKeys("Irem.2113");
+        inputs.get(2).click();
+        Thread.sleep(2000);
+
+        WebElement welcomeMessage = driver.findElement(By.id("dashboard-p1"));
+        String actualMessage= welcomeMessage.getText();
+        String expectedMessage = "Welcome İrem";
+
+        Assert.assertEquals(actualMessage,expectedMessage);
+
+       List<WebElement> experienceAndEducation = driver.findElements(By.xpath("//h2"));
+
+       for (WebElement experienceAndEducations : experienceAndEducation){
+           System.out.println("experienceAndEducations.getText() = " + experienceAndEducations.getText());
+       }
+        System.out.println("---------------------------------------------------------");
+       //ayrı ayrı
+        System.out.println("experienceAndEducation.get(0) = " + experienceAndEducation.get(0));
+        System.out.println("experienceAndEducation.get(1) = " + experienceAndEducation.get(1));
 
     }
 }

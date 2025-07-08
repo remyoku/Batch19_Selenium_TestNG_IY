@@ -68,6 +68,19 @@ public class C04_isDisplayedDemo {
          * verify that hello element is displayed (bu elementin locate işlemi starta clickten sonra yapılmalı)
          * get the element text and print it
          */
+
+        driver.get("https://the-internet.herokuapp.com/dynamic_loading");
+        WebElement example2 = driver.findElement(By.xpath("//a[text()='Example 2: Element rendered after the fact']"));
+        example2.click();
+        Thread.sleep(2000);
+
+        WebElement startBtn = driver.findElement(By.xpath("//button[text()='Start']"));
+        startBtn.click();
+        Thread.sleep(8000);
+
+        WebElement helloElement = driver.findElement(By.xpath("//h4[text()='Hello World!']"));
+        System.out.println("helloElement.getText() = " + helloElement.getText());
+
     }
 
 }
