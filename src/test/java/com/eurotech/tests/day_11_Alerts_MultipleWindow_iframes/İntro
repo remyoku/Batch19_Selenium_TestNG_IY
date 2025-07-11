@@ -101,4 +101,8 @@ ya en üste yada bir üste
  driver.switchTo().frame(frame2);
  */
 
+*Neden No Such Element Hatası Alırız?
 
+1.Bizden kaynaklı
+2.Senkronizasyondan kayanklı
+3.Locate ettiğimiz web element iframe içindedir ondan dolayı belirtmediğimiz için hata alırız.

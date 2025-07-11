@@ -16,6 +16,6 @@ elementlerle birlikte çalıştığı için her bir aranan web elementle birlikt
 
 Explicit Wait
 -Bu direkt açık wait ve web elementi ilgilendirir.
--Formun altında kaydet bu tonu vardır form dolmadan kaydet butonu aktif hale gelmez.
+-Formun altında kaydet butonu vardır form dolmadan kaydet butonu aktif hale gelmez.
 -İşte bu waiti kaydet butonu aktif olana kadar bekle kodu yazabiliriz.
 -Şu olana kadar bekle , bunu yapana kadar bekle gibi.
