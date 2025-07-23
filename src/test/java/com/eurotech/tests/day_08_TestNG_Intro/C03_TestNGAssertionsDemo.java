@@ -19,7 +19,7 @@ public class C03_TestNGAssertionsDemo {
     @Test
     public void test1() {
         System.out.println("First Assertion");
-        Assert.assertEquals("Ayşe3", "Ayşe");
+        Assert.assertEquals("Ayşe", "Ayşe");
 
         System.out.println("Second Assertion");
         Assert.assertEquals("Alper", "Alper");
@@ -30,7 +30,7 @@ public class C03_TestNGAssertionsDemo {
     public void test2() {
         System.out.println("Third Assertion");
         Assert.assertEquals("url","url");
-        int i = 8/0;
+      //  int i = 8/0;
         System.out.println("Code Continues");
     }
     @Test

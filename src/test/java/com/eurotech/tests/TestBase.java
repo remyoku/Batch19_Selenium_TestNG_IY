@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class TestBase {
-   protected WebDriver driver;
+   protected WebDriver driver; //access modifies Defoult olduğu için
    protected WebDriverWait wait;
 
     @BeforeMethod

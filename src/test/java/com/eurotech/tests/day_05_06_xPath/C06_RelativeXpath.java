@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 public class C06_RelativeXpath {
     public static void main(String[] args) throws InterruptedException {
-        /**  2222222222
+        /**
          * class task
          * open chrome browser and go to http://www.eurotech.study/
          * click I understand button and accept cookies (by xPath with contains (attribute))
