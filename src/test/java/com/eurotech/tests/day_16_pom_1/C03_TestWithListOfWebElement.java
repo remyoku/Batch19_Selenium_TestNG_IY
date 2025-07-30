@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class C03_TestWithListOfWebElement extends TestBase {
+    LoginPage loginPage=new LoginPage();
 
     @Test
     public void positiveLoginTestWithListOfWebElement() {
@@ -19,18 +20,18 @@ public class C03_TestWithListOfWebElement extends TestBase {
          *
          */
 
-        LoginPage loginPage = new LoginPage();
+       ;
 
-        loginPage.loginInputs.get(0).sendKeys(ConfigurationReader.get("userEmail"));
-        loginPage.loginInputs.get(1).sendKeys(ConfigurationReader.get("password"));
-        loginPage.loginInputs.get(2).click();
-      //  loginPage.loginInputs.get(3).getText();  IndexOutOfBoundsException
+        loginPage.loginInputs.get(0).sendKeys(ConfigurationReader.get("userEmail"));        // email box
+        loginPage.loginInputs.get(1).sendKeys(ConfigurationReader.get("password"));         // password box
+        loginPage.loginInputs.get(2).click();                                                           // login button
 
-        DashboardPage dashboardPage = new DashboardPage();
-        String actualUserName = dashboardPage.userName.getText();
-        String expectedUserName = ConfigurationReader.get("userName");
+        DashboardPage dashboardPage=new DashboardPage();
+        String actualUserName=dashboardPage.userName.getText();
+        String expectedUserName=ConfigurationReader.get("userName");
 
-        Assert.assertEquals(actualUserName,expectedUserName,"should be same");
+        Assert.assertEquals(actualUserName,expectedUserName, "should be same");
+
     }
 
     @Test
@@ -43,22 +44,49 @@ public class C03_TestWithListOfWebElement extends TestBase {
          *
          */
 
-        LoginPage loginPage = new LoginPage();
 
         loginPage.loginInputs.get(0).sendKeys(ConfigurationReader.get("userEmail")+
                 Keys.TAB+ConfigurationReader.get("password")+
                 Keys.TAB+Keys.TAB+Keys.ENTER);
 
-        DashboardPage dashboardPage = new DashboardPage();
-        String actualUserName = dashboardPage.userName.getText();
-        String expectedUserName = ConfigurationReader.get("userName");
+        DashboardPage dashboardPage=new DashboardPage();
+        String actualUserName=dashboardPage.userName.getText();
+        String expectedUserName=ConfigurationReader.get("userName");
 
-        Assert.assertEquals(actualUserName,expectedUserName,"should be same");
+        Assert.assertEquals(actualUserName,expectedUserName, "should be same");
     }
 
     @Test
     public void dashboardTabMenu() {
 
+        loginPage.login();
+
+        DashboardPage dashboardPage=new DashboardPage();
+
+        for (int i = 0; i <6 ; i++) {
+            String tabMenuName = dashboardPage.tabMenu.get(i).getText();
+            System.out.println("tabMenuName = " + tabMenuName);
+        }
+
+
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

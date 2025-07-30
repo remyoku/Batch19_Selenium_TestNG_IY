@@ -1,4 +1,4 @@
-package com.eurotech.tests.day_10_listOfElemenets_DropDawns;
+package com.eurotech.tests.day_07_Css_Locator.day_10_listOfElemenets_DropDawns;
 
 import com.eurotech.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
