@@ -1,4 +1,4 @@
-package com.eurotech.tests.day_19_extent_reports;
+package com.eurotech.tests.day_12_Wait.day_19_extent_reports;
 
 import com.eurotech.pages.AddEducationPage;
 import com.eurotech.pages.DashboardPage;
@@ -11,8 +11,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class C03_AddEducationWithExtentReport extends TestBase {
+
     @Test
-    public void addEducationTest(){
+    public void addEducationTest() {
         /**
          1-open chrome browser
          2-navigate to https://sdettest.eurotechstudy.eu/login by using configuration.properties
@@ -31,13 +32,14 @@ public class C03_AddEducationWithExtentReport extends TestBase {
 
         extentLogger = report.createTest("TC125 Add Education Test");
 
+
         LoginPage loginPage = new LoginPage();
         DashboardPage dashboardPage = new DashboardPage();
         UserProfilePage userProfilePage = new UserProfilePage();
         AddEducationPage addEducationPage = new AddEducationPage();
 
         extentLogger.info("open chrome browser");
-        extentLogger.info("navigate to "+ConfigurationReader.get("url")+" by using configuration.properties");
+        extentLogger.info("navigate to " + ConfigurationReader.get("url") + " by using configuration.properties");
         extentLogger.info("login with parameterized/non-parameterized method");
         loginPage.login();
 
@@ -60,19 +62,20 @@ public class C03_AddEducationWithExtentReport extends TestBase {
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(addEducationPage.addEducationBtn)).isDisplayed());
 
         extentLogger.info("Fill the form with parameterized method (use actions class)");
-        addEducationPage.filingAddEducationForm("IBU","Lisans","QA TESTER","10102017","22062022"
-                ,"Hard Program");
+        addEducationPage.filingAddEducationForm("IBU", "Lisans", "QA TESTER", "10102017", "22062022"
+                , "Hard Program");
 
         extentLogger.info("Verify that added education record can be seen at user profile page... (assert with school name)");
         String lastAddedSchool = userProfilePage.lastAddedSchoolName("IBU");
         String expectedSchoolName = "IBU";
-        Assert.assertEquals(lastAddedSchool,expectedSchoolName);
-
+        Assert.assertEquals(lastAddedSchool, expectedSchoolName);
 
         extentLogger.info("Delete last added education record");
         userProfilePage.deleteLastAddedEducationRecord("IBU");
 
-        extentLogger.pass("Passed..");
+        extentLogger.pass("Passsed...!");
+
 
     }
+
 }

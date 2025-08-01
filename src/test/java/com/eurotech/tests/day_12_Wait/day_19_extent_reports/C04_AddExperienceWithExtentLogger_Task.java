@@ -1,4 +1,4 @@
-package com.eurotech.tests.day_19_extent_reports;
+package com.eurotech.tests.day_12_Wait.day_19_extent_reports;
 
 import com.eurotech.pages.AddExperiencePage;
 import com.eurotech.pages.DashboardPage;
@@ -28,14 +28,9 @@ public class C04_AddExperienceWithExtentLogger_Task extends TestBase {
          important note: every student should use own credentials, otherwise the test case will fail....
          */
 
-        extentLogger = report.createTest("TC2121 Add Experience Test");
-
-        extentLogger.info("navigate to "+ConfigurationReader.get("url"));
-        extentLogger.info("make login");
         LoginPage loginPage = new LoginPage();
         loginPage.login();
 
-        extentLogger.info("Assert successful login with user name");
         DashboardPage dashboardPage = new DashboardPage();
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(dashboardPage.userName)).isDisplayed());
 
@@ -43,33 +38,23 @@ public class C04_AddExperienceWithExtentLogger_Task extends TestBase {
         String exceptedUserName = ConfigurationReader.get("userName");
         Assert.assertEquals(actualUserName,exceptedUserName);
 
-        extentLogger.info("Navigate to My Profile with related method");
         dashboardPage.navigateToTabs(ConfigurationReader.get("userName"),"My Profile");
 
-        extentLogger.info("Verify that User Profile page is displayed");
         UserProfilePage userProfilePage = new UserProfilePage();
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.userProfilePageTitle)).isDisplayed());
 
-        extentLogger.info("Navigate to Add Experience tab with related method");
         AddExperiencePage addExperiencePage = new AddExperiencePage();
         userProfilePage.navigateUserProfileTabs("Add Experience");
 
-        extentLogger.info("Verify that add experince page is displayed");
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(addExperiencePage.addExperienceBtn)).isDisplayed());
 
-        extentLogger.info("Fill the form with non-parameterized method (using actions class is optional)");
         addExperiencePage.fillingAddExperienceForm("Qa Tester","EuroTech","Turkiye",
                 "09122024","21122025","Education Program");
 
-        extentLogger.info("Verify that added experience record can be seen at user profile page... (assert with job title)");
         String lastAddedJob = userProfilePage.lastAddedJobName("Qa Tester");
         String exceptedJobName = "Qa Tester";
         Assert.assertEquals(lastAddedJob,exceptedJobName);
 
-        extentLogger.info("Delete last added experience record");
         userProfilePage.deleteLastAddedExperienceRecord("Qa Tester");
-
-        extentLogger.pass("Passed.....!");
-
     }
 }
