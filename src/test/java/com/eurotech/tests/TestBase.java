@@ -26,7 +26,7 @@ public class TestBase {
     protected WebDriver driver; //access modifies Defoult olduğu için
     protected WebDriverWait wait;
     protected Actions actions;
-    protected ExtentReports report;
+    protected static ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest extentLogger;
 
